@@ -1,7 +1,6 @@
 WStack
 ======
 
-[![PyPI](https://img.shields.io/pypi/v/wstack.svg)](https://pypi.python.org/pypi/wstack)
 [![PyPI version](https://img.shields.io/pypi/pyversions/wstack.svg)](https://pypi.python.org/pypi/wstack)
 [![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://miyakogi.github.io/wstack)
 [![Build Status](https://travis-ci.org/miyakogi/wstack.svg?branch=master)](https://travis-ci.org/miyakogi/m2r)
@@ -19,7 +18,7 @@ WStack is not a web development framework per si, it is a middleware framework t
 
 - Web Stack
     - Declarative definition for a group of WSGI applications and middleware:
-        - Explicit routing
+        - Manual routing
         - Automatic path name based routing
         - Pre-processing bindings:
             - Session management
@@ -35,33 +34,35 @@ WStack is not a web development framework per si, it is a middleware framework t
         - cheroot: pure-Python HTTP server used by CherryPy
 
 ## Examples:
-`wstack run uaa-with-api.json`
+`wstack uaa-with-api.json`
 ```json
 {
-    "description": "cf-micro UAA+API ",
-    "apps":
-        [
-            {
-                "path" : "/",
-                "module": "webroot.index"
-            },
-            {
-                "path" : "/api",
-                "package": "api",
-                "auto_routing": true,
-                "pre-processing": [
-                    "pre.authentication"
-                ]
-            },
-            {
-                "path" : "/uaa",
-                "package": "uaa",
-                "auto_routing": true
-            }
-        ],
-    "post-processing":
-        [
-            "post.logging"
-        ]
+    "webstack": {
+        "description": "cf-micro UAA+API ",
+        "apps":
+            [
+                {
+                    "path" : "/",
+                    "module": "webroot.index"
+                },
+                {
+                    "path" : "/api",
+                    "package": "api",
+                    "auto-routing": true,
+                    "pre-processing": [
+                        "pre.authentication"
+                    ]
+                },
+                {
+                    "path" : "/uaa",
+                    "package": "uaa",
+                    "auto-routing": true
+                }
+            ],
+        "post-processing":
+            [
+                "post.logging"
+            ]
+    }
 }
 ```

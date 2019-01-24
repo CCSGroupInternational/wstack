@@ -1,7 +1,12 @@
 {
     "restructuredtext.confPath": "",
     "cSpell.words": [
+        "codecov",
+        "httpd",
+        "webroot",
+        "webstack",
         "wsgi",
+        "wsgiref",
         "wstack"
     ]
 }

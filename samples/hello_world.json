@@ -1,0 +1,11 @@
+{
+  "webstack": {
+    "description": "Hello World",
+    "apps": [
+      {
+        "path": "/",
+        "module": "samples.hello_world"
+      }
+    ]
+  }
+}

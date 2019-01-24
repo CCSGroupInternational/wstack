@@ -1,15 +1,13 @@
-from .commands.appspec import run
-from . import version
-import click
+from .cli.options import parse
+from .cli.input import process
 
-
-@click.group()
-@click.version_option(version=version)
-def cli():
-    pass
-
-
-cli.add_command(run)
+def main():
+    (options, args) = parse()
+    process(args)
 
 if __name__ == '__main__':
-    cli()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Interrupted')
+        sys.exit(2)
