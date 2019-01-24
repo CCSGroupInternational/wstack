@@ -1,4 +1,4 @@
-WSTack
+WStack
 ======
 
 [![PyPI](https://img.shields.io/pypi/v/wstack.svg)](https://pypi.python.org/pypi/wstack)
