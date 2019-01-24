@@ -9,7 +9,7 @@ WSTack
 
 --------------------------------------------------------------------------------
 
-WStack provides a modular integration framework for Python based web applications.
+WStack provides an integration framework for Python based web applications.
 
 ## Why another Python Web Framework?
 
