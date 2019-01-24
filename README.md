@@ -24,6 +24,7 @@ WStack is not a web development framework per si, it is a middleware framework t
         - Pre-processing bindings:
             - Session management
             - Authentication/authorization
+            - Caching
         - Post-processing bindings:
             - Logging
             - Performance metrics
