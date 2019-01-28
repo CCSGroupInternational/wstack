@@ -10,4 +10,4 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print('Interrupted')
-        sys.exit(2)
+        exit(2)

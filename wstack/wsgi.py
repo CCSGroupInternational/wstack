@@ -6,7 +6,7 @@ from importlib import import_module
 
 # TODO: Analyze & improve the path routing performance
 
-WSGI_APPS_DICT = {}
+URI_ROUTING = {}
 
 def load_app(appname):
     try:
@@ -29,15 +29,16 @@ def set_routing(wsgi_dict):
     Build the http routing table from a "wsgi_dict" { 'uri_path' : wsgi_app }
     """
     for uri_path, wsgi_app in wsgi_dict.items():
-        URI_ROUTING[uri_path.replace('.', '/')] = wsgi_app
+        uri_path = uri_path.strip('/').replace('.', '/')
+        URI_ROUTING[uri_path] = wsgi_app
 
 
-def wsgi_app(environ, start_response):
+def routing_wsgi_app(environ, start_response):
     setup_testing_defaults(environ)
     parsed_uri = urlparse(request_uri(environ, include_query=False))
     request_path = parsed_uri.path.strip('/')
-    for uri_path, wsgi_app in WSGI_APPS_DICT.items():
-        if request_path.startswith(uri_path):
+    for uri_path, wsgi_app in URI_ROUTING.items():
+        if request_path == uri_path:
             return wsgi_app(environ, start_response)
 
     status = '404 Not Found'
