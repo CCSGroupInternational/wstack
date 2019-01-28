@@ -1,11 +1,10 @@
-from .wsgi import load_app, set_routing, wsgi_server, routing_wsgi_app
+from .wsgi import wsgi_server, routing_wsgi_app, add_route
+from .webapp import WebApp
+
 
 def run(webstack_data):
-    routing_dict = {}
-    for app in webstack_data.get('apps'):
-        wsgi_app = load_app(app['module'])
-        app_route = app['path']
-        routing_dict[app_route] = wsgi_app
-    set_routing(routing_dict)
-    wsgi_server(routing_wsgi_app)
 
+    for app_data in webstack_data.get('apps'):
+        webapp = WebApp(app_data)
+        add_route(webapp, webapp.path)
+    wsgi_server(routing_wsgi_app)

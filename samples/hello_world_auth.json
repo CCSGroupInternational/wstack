@@ -1,0 +1,21 @@
+{
+    "env": {
+        "AUTH_MODULE": "samples.auth.user_pass",
+        "AUTH_REALM": "Website"
+    },
+    "webstack": {
+        "description": "Hello World",
+        "apps": [
+            {
+                "path": "/",
+                "pre-filters": [
+                    "samples.middleware.http_basic"
+                ],
+                "module": "samples.endpoint.hello_world",
+                "post-filters": [
+                    "samples.middleware.http_logging"
+                ]
+            }
+        ]
+    }
+}
