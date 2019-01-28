@@ -3,14 +3,14 @@
 #   https://wsgi.readthedocs.io/en/latest/specifications/simple_authentication.html
 
 from importlib import import_module
-from os import environ
+from os import getenv
 
-class HTTPBasic(object):
+class Middleware(object):
 
     def __init__(self, next_wsgi_app):
         self.next_wsgi_app = next_wsgi_app
-        self.auth_module = import_module(environ['AUTH_MODULE'])
-        self.realm = environ['AUTH_REALM']
+        self.auth_module = import_module(getenv('AUTH_MODULE'))
+        self.realm = getenv('AUTH_REALM')
 
     def __call__(self, environ, start_response):
         def repl_start_response(status, headers, exc_info=None):

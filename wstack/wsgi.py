@@ -12,7 +12,8 @@ from .kua import Routes, RouteError
 
 ROUTES = Routes()
 
-def load_app(appname):
+def load_app(appname, is_middleware=False):
+    target_module_name = 'Middleware' if is_middleware else 'application'
     try:
         module = import_module(appname)
     except ModuleNotFoundError:
@@ -22,10 +23,10 @@ def load_app(appname):
         print('Error loading module', appname, file=stderr)
         print(format_exc(), error, file=stderr)
         exit(2)
-    if not hasattr(module, 'application'):
-        print("Module {} does not provide an application object !!!".format(module), file=stderr)
+    if not hasattr(module, target_module_name):
+        print("Module {} does not provide an {} object !!!".format(module, target_module_name), file=stderr)
         exit(3)
-    return module.application
+    return getattr(module, target_module_name)
 
 
 def set_routing(wsgi_dict):

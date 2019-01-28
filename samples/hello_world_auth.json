@@ -11,7 +11,7 @@
                 "pre-filters": [
                     "samples.middleware.http_basic"
                 ],
-                "module": "samples.endpoint.hello_world",
+                "module": "samples.hello_world",
                 "post-filters": [
                     "samples.middleware.http_logging"
                 ]
