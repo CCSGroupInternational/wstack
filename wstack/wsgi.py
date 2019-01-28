@@ -36,7 +36,6 @@ def set_routing(wsgi_dict):
         uri_path = uri_path.strip('/').replace('.', '/')
         URI_ROUTING[uri_path] = wsgi_app
 
-
 def routing_wsgi_app(environ, start_response):
     setup_testing_defaults(environ)
     parsed_uri = urlparse(request_uri(environ, include_query=False))
